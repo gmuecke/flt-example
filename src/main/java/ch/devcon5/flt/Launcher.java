@@ -3,6 +3,7 @@ package ch.devcon5.flt;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import ch.devcon5.flt.autoscaler.AutoScaler;
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
@@ -11,7 +12,7 @@ import org.slf4j.Logger;
 /**
  *
  */
-public class Launcher {
+public class Launcher extends AbstractVerticle{
 
   private static final Logger LOG = getLogger(Launcher.class);
 
@@ -58,6 +59,12 @@ public class Launcher {
     LOG.info("Configuration\n{}",config.encodePrettily());
 
     Vertx vertx = Vertx.vertx();
-    vertx.deployVerticle(AutoScaler.class.getName(), new DeploymentOptions().setConfig(config));
+    vertx.deployVerticle(Launcher.class.getName(), new DeploymentOptions().setConfig(config));
+  }
+
+  @Override
+  public void start() throws Exception {
+
+    vertx.deployVerticle(AutoScaler.class.getName(), new DeploymentOptions().setConfig(config()));
   }
 }

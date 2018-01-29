@@ -1,0 +1,12 @@
+{
+  "service" : "ch.devcon5.flt.ExampleService",
+  "loadFactor" : 2000,
+  "minInstances" : 1,
+  "maxInstances" : 16,
+  "threadLoadThreshold" : 0.6,
+  "maxThresholdViolations" : 25,
+  "monitorWindow" : 35,
+  "gracePeriodCycles" : 2,
+  "checkInterval" : 30000,
+  "pollingInterval" : 1000
+}

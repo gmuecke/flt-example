@@ -42,10 +42,10 @@ public class AutoScaler extends AbstractVerticle {
   @Override
   public void start(final Future<Void> startFuture) throws Exception {
 
-    this.deploymentVerticle = config().getString("service");
+    this.deploymentVerticle = config().getString("service", "ch.devcon5.flt.ExampleService");
     this.minInstances = config().getInteger("minInstances", 1);
     this.maxInstances = config().getInteger("maxInstances", Runtime.getRuntime().availableProcessors() * 2);
-    this.loadThreshold = config().getDouble("threadLoadThreshold", 0.6);
+    this.loadThreshold = config().getDouble("threadLoadThreshold", 0.8);
     this.gracePeriod = config().getInteger("gracePeriodCycles", 5);
     this.monitorWindow = config().getInteger("monitorWindow", 10);
     this.maxThresholdViolations = Math.min(config().getInteger("maxThresholdViolations", 5), this.monitorWindow);

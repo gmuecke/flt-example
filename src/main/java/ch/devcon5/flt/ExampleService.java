@@ -27,7 +27,7 @@ public class ExampleService extends AbstractVerticle {
   public void start(final Future<Void> startFuture) throws Exception {
 
     this.random = new Random();
-    this.loadFactor = config().getInteger("loadFactor", 10_000);
+    this.loadFactor = config().getInteger("loadFactor", 2_000);
 
     HttpServerOptions httpOpts = new HttpServerOptions().setPort(18080);
     HttpServer server = vertx.createHttpServer(httpOpts);
